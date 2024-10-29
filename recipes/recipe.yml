@@ -4,8 +4,8 @@ name: abhjj-os
 description: This is my personal OS image.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 40 # latest is also supported if you want new updates ASAP
+base-image: ghcr.io/ublue-os/kinoite-nvidia
+image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -21,19 +21,35 @@ modules:
     install:
       # - micro
       # - starship
+      - btop
+      - fastfetch
+      - neovim
     remove:
       # example: removing firefox (in favor of the flatpak)
       # "firefox" is the main package, "firefox-langpacks" is a dependency
-      # - firefox
-      # - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+       - firefox
+       - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+       - khelpcenter 
+       - kwalletmanager5
+       - krfb-libs
+       - kwrite 
+       - kjournald-libs 
+       - kfind 
+       - kcharselect 
+       - kjournald 
+       - kdebugsettings 
+       - krfb
+       - plasma-welcome
+       - toolbox
+       
 
   - type: default-flatpaks
     notify: true # Send notification after install/uninstall is finished (true/false)
     system:
       # If no repo information is specified, Flathub will be used by default
-      # repo-url: https://dl.flathub.org/repo/flathub.flatpakrepo
-      # repo-name: flathub
-      # repo-title: "Flathub (system-wide)" # Optional; this sets the remote's user-facing name in graphical frontends like GNOME Software
+      repo-url: https://dl.flathub.org/repo/flathub.flatpakrepo
+      repo-name: flathub
+      repo-title: "Flathub (system-wide)" # Optional; this sets the remote's user-facing name in graphical frontends like GNOME Software
       install:
         # - org.mozilla.firefox
         # - org.gnome.Loupe
